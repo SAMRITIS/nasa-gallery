@@ -25,17 +25,15 @@ const Home = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      let res = await axios.get(
-        `/.netlify/functions/proxy?q=${planet}&page=${page}`,  // Use the proxy here
-        { timeout: 5000 }
-      );
-      setData(res.data.collection.items);
+        let res = await axios.get(`http://images-api.nasa.gov/search?q=${planet}&page=${page}`);
+        console.log("API Response: ", res.data); // Log the full response
+        setData(res.data.collection.items);
     } catch (error) {
-      console.error("Error fetching data: ", error);
+        console.error("Error fetching data: ", error);
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   return (
     <>
