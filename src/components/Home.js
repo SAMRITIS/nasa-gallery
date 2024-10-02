@@ -22,18 +22,20 @@ const Home = () => {
     setPlanet(data);
   };
 
-  const fetchData = async () => {
+ const fetchData = async () => {
     setLoading(true);
     try {
-        let res = await axios.get(`http://images-api.nasa.gov/search?q=${planet}&page=${page}`);
-        console.log("API Response: ", res.data); // Log the full response
-        setData(res.data.collection.items);
+        // Use the proxy endpoint
+        let res = await axios.get(`/.netlify/functions/proxy?q=${planet}&page=${page}`);
+        console.log("Proxy Response: ", res.data); // Log the full response
+        setData(res.data.collection.items || []); // Safely access items
     } catch (error) {
         console.error("Error fetching data: ", error);
     } finally {
         setLoading(false);
     }
 };
+
 
   return (
     <>
