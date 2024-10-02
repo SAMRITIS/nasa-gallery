@@ -26,7 +26,7 @@ const Home = () => {
     setLoading(true);
     try {
       let res = await axios.get(
-        `http://images-api.nasa.gov/search?q=${planet}&page=${page}`,
+        `/.netlify/functions/proxy?q=${planet}&page=${page}`,  // Use the proxy here
         { timeout: 5000 }
       );
       setData(res.data.collection.items);
@@ -39,16 +39,15 @@ const Home = () => {
 
   return (
     <>
-      {showModal && data?.[ele]?.["links"]?.[0].href ? (
+      {showModal && data?.[ele]?.["links"]?.[0]?.href ? (
         <div className="modal">
           <div className="modal-content">
-            <Detail data={data?.[ele]} />
+            <Detail data={data[ele]} />
             <button onClick={() => setShowModal(false)}>Close</button>
           </div>
         </div>
       ) : null}
       <div className="home-div">
-        {/* <img alt="nasa logo" src=""/> */}
         <h1 style={{ marginTop: "50px", marginLeft: "50px" }}>Nasa Gallery</h1>
         <Selector getSelectedOption={getSelectedOption} />
       </div>
@@ -63,7 +62,7 @@ const Home = () => {
               key={index}
               className="sub"
               onClick={() => {
-                setShowModal((showModal) => !showModal);
+                setShowModal(true);
                 setEle(index);
               }}
             >
@@ -80,8 +79,9 @@ const Home = () => {
                   : element.data[0].title}
               </p>
               <button
-                onClick={() => {
-                  setShowModal((showModal) => !showModal);
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent modal from opening again
+                  setShowModal(true);
                   setEle(index);
                 }}
               >
