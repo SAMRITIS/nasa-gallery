@@ -26,7 +26,7 @@ const Home = () => {
     setLoading(true);
     try {
         // Use the proxy endpoint
-       let res = await axios.get(`http://images-api.nasa.gov/search?q=${planet}&page=${page}`);
+       let res = await axios.get(`https://images-api.nasa.gov/search?q=${planet}&page=${page}`);
         console.log("Proxy Response: ", res.data); // Log the full response
         setData(res.data.collection.items || []); // Safely access items
     } catch (error) {
