@@ -1,0 +1,8 @@
+.detail-img:hover {
+  cursor: pointer;
+  scale: 2.5;
+}
+
+p {
+  margin-top: 20px !important;
+}

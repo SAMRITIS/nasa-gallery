@@ -1,0 +1,57 @@
+body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.loader-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* This makes the parent div take up the full viewport height */
+  text-align: center;
+}
+
+.subdiv {
+  /* background-color: black; */
+  height: 70px;
+  width: 70px;
+  border-radius: 100%;
+  border: 12px solid #f3f3f3;
+  border-top: 12px solid #ff0000;
+  border-bottom: 12px solid #0008ff;
+  border-left: 12px solid #00ff11;
+  border-right: 12px solid #ffe100;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.text {
+  margin: 50px;
+  color: #00ff11;
+  animation: grow 10s infinite linear;
+}
+
+@keyframes grow {
+  0% {
+    color: #ff0000;
+  }
+  25% {
+    color: #00ff11;
+  }
+  50% {
+    color: #0008ff;
+  }
+
+  100% {
+    color: #ffe100;
+  }
+}

@@ -1,0 +1,9 @@
+.select-main {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+}
+select {
+  padding: 5px;
+  width: 300px;
+}
