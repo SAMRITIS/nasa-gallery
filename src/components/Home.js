@@ -26,7 +26,7 @@ const Home = () => {
     setLoading(true);
     try {
       let res = await axios.get(
-        `http://images-api.nasa.gov/search?q=${planet}&page=${page}`,
+        `https://images-api.nasa.gov/search?q=${planet}&page=${page}`,
         { timeout: 5000 }
       );
       setData(res.data.collection.items);
