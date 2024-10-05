@@ -1,23 +1,31 @@
 .sub {
   display: flex;
-  flex-direction: column; /* Stack the images vertically inside each 'sub' */
-  gap: 10px; /* Space between images inside each 'sub' */
-  width: 250px; /* Adjust the width of each column */
-  align-items: center; /* Center the images within the sub container */
-  margin-left: 80px;
-  margin-top: 40px;
-  /* margin-bottom: 50px; */
-  /* background-color: rgb(139, 138, 138); */
+  flex-direction: column;
+  /* Stack the images vertically inside each 'sub' */
+  gap: 10px;
+  /* Space between images inside each 'sub' */
+  width: 100%;
+  /* Full width to utilize available space */
+  max-width: 250px;
+  /* Max width for larger screens */
+  align-items: center;
+  /* Center the images within the sub container */
+  margin: 20px auto;
+  /* Center with auto margins */
   padding: 5px;
   height: 250px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .main-img {
-  height: 150px; /* Set a consistent height */
-  width: 100%; /* Images will take the full width of the column */
-  object-fit: cover; /* Ensures the images fill the container without distortion */
-  display: block; /* Ensure the image behaves as a block element */
+  height: 150px;
+  /* Set a consistent height */
+  width: 100%;
+  /* Images will take the full width of the column */
+  object-fit: cover;
+  /* Ensures the images fill the container without distortion */
+  display: block;
+  /* Ensure the image behaves as a block element */
 }
 
 .more {
@@ -33,12 +41,15 @@ button {
 
 .pagination {
   display: flex;
-  justify-content: center; /* Center the buttons horizontally */
-  margin: 20px 0; /* Optional margin for spacing */
+  justify-content: center;
+  /* Center the buttons horizontally */
+  margin: 20px 0;
+  /* Optional margin for spacing */
 }
 
 .page-but {
-  margin: 0 10px; /* Margin between the buttons */
+  margin: 0 10px;
+  /* Margin between the buttons */
   color: black;
 }
 
@@ -52,46 +63,142 @@ button:hover {
   background-color: white;
   width: 100vw;
   height: 25vh;
-  z-index: 10; /* Ensure it stays on top */
+  z-index: 10;
+  /* Ensure it stays on top */
 }
 
 .main {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping of the main row if necessary */
-  gap: 20px; /* Space between each element in the row */
-  justify-content: flex-start; /* Aligns the first loop iteration elements in the same row */
-  padding: 20px; /* Optional padding for the container */
-  padding-top: 35vh; /* Adjust this value according to the height of your .home-div */
+  flex-wrap: wrap;
+  /* Allow wrapping of the main row if necessary */
+  gap: 20px;
+  /* Space between each element in the row */
+  justify-content: center;
+  /* Center the items in the row */
+  padding: 20px;
+  /* Optional padding for the container */
+  padding-top: 35vh;
+  /* Adjust this value according to the height of your .home-div */
 }
 
 .modal {
-  position: fixed; /* Fixed positioning to cover the viewport */
-  top: 0; /* Align to the top */
-  left: 0; /* Align to the left */
-  width: 100vw; /* Full width */
-  height: 100vh; /* Full height */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  display: flex; /* Flexbox for centering content */
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
-  z-index: 1000; /* High z-index to appear above other elements */
+  position: fixed;
+  /* Fixed positioning to cover the viewport */
+  top: 0;
+  /* Align to the top */
+  left: 0;
+  /* Align to the left */
+  width: 100vw;
+  /* Full width */
+  height: 100vh;
+  /* Full height */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  display: flex;
+  /* Flexbox for centering content */
+  align-items: center;
+  /* Center vertically */
+  justify-content: center;
+  /* Center horizontally */
+  z-index: 1000;
+  /* High z-index to appear above other elements */
 }
 
 /* Style for the content inside the modal */
 .modal-content {
-  background-color: white; /* White background for content */
-  padding: 20px; /* Padding inside the modal */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+  position: relative;
+  /* Set the position to relative for absolute positioning of the close button */
+  background-color: white;
+  /* White background for content */
+  padding: 20px;
+  /* Padding inside the modal */
+  border-radius: 8px;
+  /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  /* Shadow for depth */
+  max-height: 90vh;
+  /* Max height to allow scrolling */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
+  overflow-x: hidden;
+  /* Disable horizontal scrolling */
 }
+
 .modal-content p {
   word-wrap: break-word;
   max-width: 700px;
-  margin: 0 auto; /* Center the paragraph horizontally */
-  padding: 10px; /* Optional padding for better spacing */
-  text-align: left; /* Align text to the left for readability */
-  overflow-wrap: break-word; /* Ensure long words break to avoid overflow */
+  margin: 0 auto;
+  /* Center the paragraph horizontally */
+  padding: 10px;
+  /* Optional padding for better spacing */
+  text-align: left;
+  /* Align text to the left for readability */
+  overflow-wrap: break-word;
+  /* Ensure long words break to avoid overflow */
 }
+
+.close-button {
+  position: absolute;
+  /* Absolute positioning */
+  top: 10px;
+  /* Distance from the top */
+  right: 10px;
+  /* Distance from the right */
+  background-color: transparent;
+  /* Transparent background */
+  border: none;
+  /* No border */
+  font-size: 20px;
+  /* Font size for visibility */
+  cursor: pointer;
+  /* Pointer cursor */
+}
+
+.close-button:hover {
+  color: rgb(0, 60, 255);
+  /* Change color on hover */
+}
+
 .sub:hover {
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .home-div {
+    height: auto;
+    /* Allow it to adjust based on content */
+    padding: 10px;
+    /* Padding for mobile */
+  }
+
+  .main {
+    padding-top: 15vh;
+    /* Adjust padding for mobile */
+  }
+
+  .sub {
+    width: 90%;
+    /* Use more width for mobile */
+    max-width: none;
+    /* Remove max-width for smaller screens */
+    margin: 10px 0;
+    /* Space between elements */
+  }
+
+  .main-img {
+    height: 120px;
+    /* Reduce height for mobile */
+  }
+
+  .pagination {
+    flex-direction: column;
+    /* Stack pagination buttons vertically on mobile */
+    align-items: center;
+    /* Center align pagination */
+  }
+
+  .page-but {
+    margin: 5px 0;
+    /* Space between pagination buttons */
+  }
 }

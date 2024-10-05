@@ -22,28 +22,33 @@ const Home = () => {
     setPlanet(data);
   };
 
- const fetchData = async () => {
+  const fetchData = async () => {
     setLoading(true);
     try {
-        // Use the proxy endpoint
-       let res = await axios.get(`https://images-api.nasa.gov/search?q=${planet}&page=${page}`);
-        console.log("Proxy Response: ", res.data); // Log the full response
-        setData(res.data.collection.items || []); // Safely access items
+      let res = await axios.get(
+        `http://images-api.nasa.gov/search?q=${planet}&page=${page}`,
+        { timeout: 5000 }
+      );
+      setData(res.data.collection.items);
     } catch (error) {
-        console.error("Error fetching data: ", error);
+      console.error("Error fetching data: ", error);
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
-
+  };
 
   return (
     <>
-      {showModal && data?.[ele]?.["links"]?.[0]?.href ? (
+      {showModal && data?.[ele]?.["links"]?.[0].href ? (
         <div className="modal">
           <div className="modal-content">
-            <Detail data={data[ele]} />
-            <button onClick={() => setShowModal(false)}>Close</button>
+            <button
+              className="close-button"
+              onClick={() => setShowModal(false)}
+            >
+              &times; {/* Close icon */}
+            </button>
+            <Detail data={data?.[ele]} />
           </div>
         </div>
       ) : null}
@@ -62,7 +67,7 @@ const Home = () => {
               key={index}
               className="sub"
               onClick={() => {
-                setShowModal(true);
+                setShowModal((showModal) => !showModal);
                 setEle(index);
               }}
             >
@@ -79,9 +84,8 @@ const Home = () => {
                   : element.data[0].title}
               </p>
               <button
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent modal from opening again
-                  setShowModal(true);
+                onClick={() => {
+                  setShowModal((showModal) => !showModal);
                   setEle(index);
                 }}
               >
